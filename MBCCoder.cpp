@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <X11/XF86keysym.h>
-#include <X11/Xlib.h>
+#include <ncurses.h>
 
 int main(){
 
@@ -10,26 +9,34 @@ int main(){
  however then you must update the input variable names
  of all the code that relys on said variable*/
 
- std::cout << "DISCLAIMER THE FOLLOWING CODE HAS ONLY BEEN TESTED FOR COMPATIBILITY" << "\n" << "ON DEBIAN/DEBIAN BASED LINUX DISTROS COMPATIBILITY ON ARCH,FEDORA,GENTU,WINDOWS,MAC,ETC IS UNKNOWN" << "\n" << "THE PROGRAM IS STILL WITHIN PRE-ALPHA TESTING STAGES SO ANY FEEDBACK WOULD BE APPRECIATED" << "\n"; 
+ std::cout << "DISCLAIMER THE FOLLOWING CODE HAS ONLY BEEN TESTED FOR COMPATIBILITY" << "\n" << "ON DEBIAN/DEBIAN BASED LINUX DISTROS IE UBUNTU LINUX-MINT POP!OS ETC COMPATIBILITY ON ARCH,FEDORA,GENTOO,WINDOWS,MAC,ETC IS UNKNOWN" << "\n" << "THE PROGRAM IS STILL WITHIN PRE-ALPHA TESTING STAGES SO ANY FEEDBACK WOULD BE APPRECIATED" << "\n";
 
- std::string TS = ""; //Text Storage!
+ std::cout << "\n" << "REQUIREMENT: If you are on LINUX please install the libncurses5-dev package" << "\n" << "please install the package according to how your distro says you should!" << "\n" << "On Ubuntu the method is sudo apt install libncurses5-dev"; 
+
+ std::string TSN = ""; //Text storage name!
 
  std::string TI = ""; //Text input!
 
  std::string I = ""; //Input for commands!
 
- while(I != "--stop" || I != "-s" || I != "e" || I != "--exit"){
+ bool TEE = false; //Text editor exit!
+ 
+ bool AppExit = false;
 
-     std::cout << "\n" <<  "Input Here: ";
+ while(AppExit !=true){
+
+     std::cout << "\n" << "\n" << "Input Here: ";
 
      std::cin >> I;
        
 
       if(I == "--version" || I == "-v" || I == "--about" || I == "-a"){
            
-           std::cout << "\n" << "Version: PRE-ALPHA ~0.1~"  << "\n";
+           std::cout << "\n" << "Version: PRE-ALPHA ~0.2~"  << "\n";
            std::cout << "\n" << "Author: MaxBotCoder/MaxBot"  << "\n";
            std::cout << "\n" << "App Name: MBC Terminal Text Editor" << "\n";
+
+            
 
       }
       
@@ -44,48 +51,35 @@ int main(){
 
           std::cout << "\n" << "To get help: --help -h" << "\n";
 
+          std::cin >> I;
+          
+          
       }
 
+      
+
       if(I == "--stop" || I == "--exit" || I == "-s" || I == "-e"){
+
+      AppExit = true;
 
       exit(true);
 
  }
 
+     while (TEE == false) {
+     
      if(I == "--makefile" || I == "-mkf") {
           
-         while(KeyPress != 112 || KeyPress != 113){
+        
           
-          std::ofstream myfile;
-
-          std::cout << "\n" << "Type in file file name of your file [To exit without saving press f1] or [To exit and save press f2]" << "\n";
-
-          std::cin >> TS;
-
-          std::cout << "\n" << "Input your text you want to have saved" << "\n";
-
-          std::cin >> TI;
-
-         
-         } 
-if(KeyPress == 112) {
-  
-  
-  std::fstream outFile(TS);
-
-  break;
 
 
-}
-
-if(KeyPress == 113) {
-    
-    break;
-
-}
+  } 
 
 }
 
 
 }
+
+
 }
