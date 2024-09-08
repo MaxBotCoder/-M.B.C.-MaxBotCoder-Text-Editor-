@@ -1,85 +1,110 @@
 #include <iostream>
-#include <string>
-#include <fstream>
 #include <ncurses.h>
+#include <curses.h>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 int main(){
 
- /*I means input you can change its variable name
- however then you must update the input variable names
- of all the code that relys on said variable*/
+    std::cout << "\n" << "MBC TEXT EDITOR IS IN ALPHA STAGES EXPECT BUGS" << "\n" << "MBC Text Editor has only been tested on Debian/Debian based linux distros specificaly ubuntu 22.04 " << "compatibility with Windows,Mac,Unix,FreeBSD,Fedora,Arch,Gentoo,etc is unknown." << "\n" << "MBC Text Editor requires the following system package to be installed libncurses5-dev please install the package according to how your OS says you should." << "\n";
 
- std::cout << "DISCLAIMER THE FOLLOWING CODE HAS ONLY BEEN TESTED FOR COMPATIBILITY" << "\n" << "ON DEBIAN/DEBIAN BASED LINUX DISTROS IE UBUNTU LINUX-MINT POP!OS ETC COMPATIBILITY ON ARCH,FEDORA,GENTOO,WINDOWS,MAC,ETC IS UNKNOWN" << "\n" << "THE PROGRAM IS STILL WITHIN PRE-ALPHA TESTING STAGES SO ANY FEEDBACK WOULD BE APPRECIATED" << "\n";
+    std::string input;
 
- std::cout << "\n" << "REQUIREMENT: If you are on LINUX please install the libncurses5-dev package" << "\n" << "please install the package according to how your distro says you should!" << "\n" << "On Ubuntu the method is sudo apt install libncurses5-dev"; 
+    bool cwk = true;
 
- std::string TSN = ""; //Text storage name!
+    while(input != "exit"){
 
- std::string TI = ""; //Text input!
-
- std::string I = ""; //Input for commands!
-
- bool TEE = false; //Text editor exit!
- 
- bool AppExit = false;
-
- while(AppExit !=true){
-
-     std::cout << "\n" << "\n" << "Input Here: ";
-
-     std::cin >> I;
-       
-
-      if(I == "--version" || I == "-v" || I == "--about" || I == "-a"){
-           
-           std::cout << "\n" << "Version: PRE-ALPHA ~0.2~"  << "\n";
-           std::cout << "\n" << "Author: MaxBotCoder/MaxBot"  << "\n";
-           std::cout << "\n" << "App Name: MBC Terminal Text Editor" << "\n";
-
-            
-
-      }
-      
-      if(I == "--help" || I == "-h"){
-          std::cout << "\n" << "Here is a list of all of the available commands!" << "\n";
-
-          std::cout << "\n" << "To see version/about: --version -v --about -a" << "\n";
-
-          std::cout << "\n" << "To see stop/exit the program: --stop -s --exit -e" <<"\n";
-
-          std::cout << "\n" << "To make a file: --makefile -mkf" << "\n";
-
-          std::cout << "\n" << "To get help: --help -h" << "\n";
-
-          std::cin >> I;
-          
-          
-      }
-
-      
-
-      if(I == "--stop" || I == "--exit" || I == "-s" || I == "-e"){
-
-      AppExit = true;
-
-      exit(true);
-
- }
-
-     while (TEE == false) {
-     
-     if(I == "--makefile" || I == "-mkf") {
-          
+        std::cout << "\n" << "Input commands here: ";
         
-          
+        std::cin >> input;
 
+     if(input == "help") {
+        std::cout << "\n" << "MBC TEXT EDITOR VERSION 0.3 alpha" << "\n";
 
-  } 
+        std::cout << "\n" << "help ~ Activates help menu" << "\n";
+        std::cout << "\n" << "exit ~ Exits program" << "\n";
+        std::cout << "\n" << "makefile ~ Makes a new file" << "\n";
+        std::cout << "\n" << "about ~ Gives info about MBC text editor IE version,release date,author,application name" << "\n";
+        std::cout << "\n" << "chlog ~ Whats new menu" << "\n";
 
+        }
+
+        if(input == "chlog"){
+        std::cout << "\n" << "Version 0.3 alpha" << "\n";
+        std::cout << "\n" << "Added:" << "\n";
+        std::cout << "\n" << "~Change log" << "\n";
+        std::cout << "\n" << "Removed:" << "\n";
+        std::cout << "\n" << "~Redundant commands" << "\n";
+        std::cout << "\n" << "Altered:" << "\n";
+        std::cout << "\n" << "~simplified pre-existing commands" << "\n";
+        std::cout << "\n" << "~More detaled startup message" << "\n";
+        std::cout << "\n" << "~Streamlined syntax" << "\n";
+     }
+
+     if(input == "about"){
+        std::cout << "\n" << "Name: MBC Text Editor" << "\n";
+        std::cout << "\n" << "Version: 0.3 alpha" << "\n";
+        std::cout << "\n" << "Author: Max Bot Coder" << "\n";
+        std::cout << "\n" << "Release date september 8th 2024" << "\n";
+    }
+        
+    if(input == "makefile"){
+        
+        int keycode;
+        std::string linp;
+        std::cout << "\n" << "Are you sure you want to make a file? Y/N: ";
+        std::cin >> linp;
+
+        if(linp == "y" || linp == "Y"){
+
+        std::string filename;
+        std::string textstorage;
+        std::cout << "\n" << "Please enter file name: ";
+        std::cin >> filename;
+        std::ofstream outfile(filename + ".txt");
+        std::cout << "[To save and exit press ctrl & a simultaniously] [To exit without saving press ctrl & b simultaniously]";
+
+        initscr();
+        keycode = getch();            
+        
+        while((keycode = getch())){
+            if(keycode >= 32 || keycode <= 126){
+                printw("%c", keycode);
+                std::cin >> textstorage; 
+                std::ofstream outfile(filename + ".txt", std::ios::app);
+                    if(keycode == 1){
+                        std::cout << "Exiting while saving...";
+                        outfile << textstorage;
+                        outfile.close();
+                        std::cout << "\n" << "Input commands here: ";
+                        std::cin >> input;
+                } else if (keycode == 2){
+                    std::cout << "Exiting without saving...";
+                    outfile.close();
+                    std::cout << "\n" << "Input commands here: ";
+                    std::cin >> input;
+                    
+                }
+            }        
+        }
+
+        } else if (linp == "n" || linp == "N") {
+            std::cout << "\n" << "Exiting..." << "\n";
+        }
+
+    }
+
+    }
+        
+    if(input != "exit"){
+        exit(false);
+    } else if (input == "exit"){
+        exit(true);
+    }
 }
 
 
-}
 
 
 }
