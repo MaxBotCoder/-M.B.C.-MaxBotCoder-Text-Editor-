@@ -33,7 +33,7 @@ int main(){
         if(input == "chlog"){
         std::cout << "\n" << "Version 0.3 alpha" << "\n";
         std::cout << "\n" << "Added:" << "\n";
-        std::cout << "\n" << "~Testing Textinput functionality" << "\n";
+        std::cout << "\n" << "~Testing text input functionality" << "\n";
         std::cout << "\n" << "Removed:" << "\n";
         std::cout << "\n" << "~None" << "\n";
         std::cout << "\n" << "Altered:" << "\n";
