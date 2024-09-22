@@ -1,5 +1,5 @@
 # -M.B.C.-MaxBotCoder-Text-Editor-
-Version 0.3 Alpha 
+Version 0.3.5 Alpha "Bug Fix"
 
 \/ \/ \/ COMMANDS TO INSTALL NEEDED PACKAGES AND TO COMPILE PROPERLY \/ \/ \/
 
