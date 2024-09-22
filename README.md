@@ -5,6 +5,8 @@ Version 0.3.5 Alpha "Bug Fix"
 
 To install the required package libncurses5-dev: sudo apt install libncurses5-dev
 
-To compile do: g++ MBCCoder.cpp -o mbc -lncurses
+To compile do: g++ MBCtexteditor.cpp -o mbc -lncurses
+
+To run c++ executable: ./mbc
 
 
